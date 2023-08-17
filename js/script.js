@@ -46,3 +46,26 @@ window.onscroll = () => {
     //let footer = document.querySelector('footer');
     //footer.classList.toggle('show-animate', this.innerHeight + this.scrollY >= document.scrollingElement.scrollHeight)
 }
+
+//form activate
+
+const $form = document.querySelector('#form');
+const $buttonMailTo = document.querySelector('#send-mail');
+
+$form.addEventListener('submit', handleSubmit)
+
+function handleSubmit(event) {
+    event.preventDefault()
+
+    const form = new FormData(this);
+    console.log(form.get('emailSubject'), 'primer ejemplo')
+
+    let name = form.get('name');
+    let mail = form.get('email');
+    let subject = form.get('emailSubject');
+    let number = form.get('number');
+    let message = form.get('message');
+
+    $buttonMailTo.setAttribute('href', `mailto:maidanagabriel15@hotmail.com?Subject=${subject}&body=Name: ${name}%0D%0ANumber: ${number}%0D%0A%0D%0A${message}`)
+    $buttonMailTo.click()
+}
